@@ -2,10 +2,15 @@ require("dotenv").config();
 let express = require('express');
 const app = express();
 const sequelize = require("./db");
-let journal = require('./controllers/journalcontroller');
+
+
 let user = require('./controllers/usercontroller');
+let journal = require('./controllers/journalcontroller');
+
 
 sequelize.sync();
+
+app.use(require('./middleware/headers'));
 
 app.use(express.json());
 app.use('/journal', journal);
